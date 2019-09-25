@@ -4,7 +4,11 @@ include('includes/db_functions.php');
 include('language/language.php');
 
 if (isset($_POST['user_search'])) {
-    $user_qry = "SELECT * FROM tbl_users WHERE tbl_users.name like '%" . addslashes($_POST['search_value']) . "%' or tbl_users.email like '%" . addslashes($_POST['search_value']) . "%' ORDER BY tbl_users.id DESC";
+    $user_qry = "SELECT * FROM tab_user WHERE tab_user.fullName like '%" . addslashes($_POST['search_value']) . "%' or
+    tab_user.phone like '%" . addslashes($_POST['search_value']) . "%' or
+    tab_user.school like '%" . addslashes($_POST['search_value']) . "%' or 
+    tab_user.district like '%" . addslashes($_POST['search_value']) . "%' or
+    tab_user.email like '%" . addslashes($_POST['search_value']) . "%' ORDER BY tab_user.uid DESC";
     $users_result = mysqli_query($mysqli, $user_qry);
 } else {
     $tableName = "tab_user";
@@ -62,7 +66,7 @@ if (isset($_GET['status_deactive_id'])) {
                                 </button>
                             </form>
                         </div>
-                        <div class="add_btn_primary"><a href="add_user.php?add=yes">Add User</a></div>
+                        <!-- <div class="add_btn_primary"><a href="add_user.php?add=yes">Add User</a></div> -->
                     </div>
                 </div>
             </div>
