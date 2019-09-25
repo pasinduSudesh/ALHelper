@@ -1,4 +1,3 @@
 <?php
-echo "log in success full"
-
+include("includes/header.php");
 ?>
