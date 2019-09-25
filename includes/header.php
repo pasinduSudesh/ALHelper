@@ -46,7 +46,7 @@ $currentFile = $parts[count($parts) - 1];
               <div class="title">Users</div>
             </a> </li>
 
-          <li <?php if ($currentFile == "manage_exam.php" or $currentFile == "add_exam.php") { ?>class="active" <?php } ?>> <a href="manage_exam.php">
+          <li <?php if ($currentFile == "manage_exams.php" or $currentFile == "add_exam.php") { ?>class="active" <?php } ?>> <a href="manage_exam.php">
               <div class="icon"> <i class="fa fa-buysellads" aria-hidden="true"></i> </div>
               <div class="title">Exams</div>
             </a>

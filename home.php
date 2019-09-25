@@ -26,7 +26,7 @@ $practical_count = $practical_count['num'];
             </div>
         </a> </div>
 
-    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_exam.php" class="card card-banner card-green-light">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12"> <a href="manage_exams.php" class="card card-banner card-green-light">
             <div class="card-body"> <i class="icon fa fa-sitemap fa-4x"></i>
                 <div class="content">
                     <div class="title">Exams</div>
