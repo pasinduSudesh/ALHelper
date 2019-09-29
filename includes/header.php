@@ -46,21 +46,21 @@ $currentFile = $parts[count($parts) - 1];
               <div class="title">Users</div>
             </a> </li>
 
-          <li <?php if ($currentFile == "manage_exams.php" or $currentFile == "add_exam.php") { ?>class="active" <?php } ?>> <a href="manage_exam.php">
+          <li <?php if ($currentFile == "manage_exams.php" or $currentFile == "add_exam.php") { ?>class="active" <?php } ?>> <a href="manage_exams.php">
               <div class="icon"> <i class="fa fa-buysellads" aria-hidden="true"></i> </div>
               <div class="title">Exams</div>
             </a>
           </li>
 
 
-          <li <?php if ($currentFile == "manage_question.php" or $currentFile == "add_question.php") { ?>class="active" <?php } ?>> <a href="manage_question.php">
+          <li <?php if ($currentFile == "manage_questions.php" or $currentFile == "add_question.php") { ?>class="active" <?php } ?>> <a href="manage_questions.php">
               <div class="icon"> <i class="fa fa-buysellads" aria-hidden="true"></i> </div>
               <div class="title">Question</div>
             </a>
           </li>
 
 
-          <li <?php if ($currentFile == "manage_practical.php" or $currentFile == "add_practical.php") { ?>class="active" <?php } ?>> <a href="manage_practical.php">
+          <li <?php if ($currentFile == "manage_practicals.php" or $currentFile == "add_practical.php") { ?>class="active" <?php } ?>> <a href="manage_practicals.php">
               <div class="icon"> <i class="fa fa-buysellads" aria-hidden="true"></i> </div>
               <div class="title"> practical </div>
             </a>

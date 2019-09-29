@@ -4,12 +4,10 @@ include('includes/db_functions.php');
 include('language/language.php');
 
 if (isset($_POST['user_search'])) {//not cmplte
-    $paper_qry = "SELECT * FROM tab_user WHERE tab_user.fullName like '%" . addslashes($_POST['search_value']) . "%' or
-    tab_user.phone like '%" . addslashes($_POST['search_value']) . "%' or
-    tab_user.school like '%" . addslashes($_POST['search_value']) . "%' or 
-    tab_user.district like '%" . addslashes($_POST['search_value']) . "%' or
-    tab_user.email like '%" . addslashes($_POST['search_value']) . "%' ORDER BY tab_user.uid DESC";
-    $paper_result = mysqli_query($mysqli, $paper_qry);}
+    $paper_qry = "SELECT * FROM tab_paper WHERE tab_paper.subject like '%" . addslashes($_POST['search_value']) . "%' or
+    tab_paper.paperTitle like '%" . addslashes($_POST['search_value']) . "%' or
+    tab_paper.paperCategory like '%" . addslashes($_POST['search_value']) . "%' ORDER BY tab_paper.pid DESC";
+    $papers_result = mysqli_query($mysqli, $paper_qry);}
 
  else {
     $tableName = "tab_paper";
@@ -29,7 +27,7 @@ if (isset($_POST['user_search'])) {//not cmplte
         $start = 0;
     }
     $users_qry = "SELECT * FROM tab_paper ORDER BY tab_paper.pid DESC LIMIT $start, $limit";
-    $users_result = mysqli_query($mysqli, $users_qry);
+    $papers_result = mysqli_query($mysqli, $users_qry);
 }
 if (isset($_GET['delete'])) {
     delete('tab_paper', 'pid=' . $_GET['paper_id'] . '');
@@ -110,7 +108,7 @@ if (isset($_GET['status_deactive_id'])) {
                     </thead>
                     <tbody>
                     <?php $i = 0;
-                    while ($users_row = mysqli_fetch_array($users_result)) { ?>
+                    while ($users_row = mysqli_fetch_array($papers_result)) { ?>
                         <tr>
           				<td><?php echo $i+1 ;?></td>
                             <td><?php echo $users_row['subject']; ?></td>
@@ -121,8 +119,8 @@ if (isset($_GET['status_deactive_id'])) {
            
                             <td>
                                 <!-- <div class="row"> -->
-                                    <a href="add_exam.php?paper_id=<?php echo $users_row['pid']; ?>&delete=yes" class="btn btn-primary">Edit</a>
-                                    <a href="manage_exams.php?paper_id=<?php echo $users_row['pid']; ?>"
+                                    <a href="add_exam.php?paper_id=<?php echo $users_row['pid']; ?>&addThis=yes" class="btn btn-primary">Edit</a>
+                                    <a href="manage_exams.php?paper_id=<?php echo $users_row['pid']; ?>&delete=yes"
                                     onclick="return confirm('Are you sure you want to delete this user?');"
                                     class="btn btn-default">Delete</a>
                                     <?php if($users_row['postState'] == "0"){?><a href="manage_exams.php?paper_id=<?php echo $users_row['pid']; ?>&postExam=yes" 
