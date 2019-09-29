@@ -11,11 +11,7 @@ if (isset($_POST['user_search'])) {//not cmplte
     tab_user.email like '%" . addslashes($_POST['search_value']) . "%' ORDER BY tab_user.uid DESC";
     $paper_result = mysqli_query($mysqli, $paper_qry);}
 
-elseif(isset($_GET['postExam'])){
-
-
-
-} else {
+ else {
     $tableName = "tab_paper";
     $targetpage = "manage_exams.php";
     $limit = 15;
@@ -35,12 +31,21 @@ elseif(isset($_GET['postExam'])){
     $users_qry = "SELECT * FROM tab_paper ORDER BY tab_paper.pid DESC LIMIT $start, $limit";
     $users_result = mysqli_query($mysqli, $users_qry);
 }
-if (isset($_GET['paper_id'])) {
-    delete('tab_upaper', 'pid=' . $_GET['paper_id'] . '');
+if (isset($_GET['delete'])) {
+    delete('tab_paper', 'pid=' . $_GET['paper_id'] . '');
     $_SESSION['msg'] = "12";
     header("Location:manage_exams.php");
     exit;
 }//Active and Deactive status
+if (isset($_GET['postExam'])){
+    $data = array('postState' => '1');
+    update('tab_paper',$data,"WHERE pid = '".$_GET['paper_id']."'");
+    $_SESSION['msg'] = "17";
+    header("Location:manage_exams.php");
+    exit;;
+
+}
+
 if (isset($_GET['status_deactive_id'])) {
     $data = array('status' => '0');
     $edit_status = Update('tbl_users', $data, "WHERE id = '" . $_GET['status_deactive_id'] . "'");
@@ -116,11 +121,11 @@ if (isset($_GET['status_deactive_id'])) {
            
                             <td>
                                 <!-- <div class="row"> -->
-                                    <a href="add_exam.php?paper_id=<?php echo $users_row['pid']; ?>" class="btn btn-primary">Edit</a>
+                                    <a href="add_exam.php?paper_id=<?php echo $users_row['pid']; ?>&delete=yes" class="btn btn-primary">Edit</a>
                                     <a href="manage_exams.php?paper_id=<?php echo $users_row['pid']; ?>"
                                     onclick="return confirm('Are you sure you want to delete this user?');"
                                     class="btn btn-default">Delete</a>
-                                    <?php if($users_row['postState'] == "0"){?><a href="manage_exam.php?paper_id=<?php echo $users_row['pid']; ?>&postExam=yes" 
+                                    <?php if($users_row['postState'] == "0"){?><a href="manage_exams.php?paper_id=<?php echo $users_row['pid']; ?>&postExam=yes" 
                                     class="btn btn-primary">Publish</a><?php } ?>
                                 <!-- </div> -->
                                 <!-- <div class="row"> -->

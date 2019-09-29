@@ -33,6 +33,8 @@
 	  $client_lang['15'] = "Please select wallpaper image...";
 
 	  $client_lang['16'] = "Notification send successfully";
+
+	  $client_lang['17'] = "Paper published successfully...";
 	   
 	   
 	   
