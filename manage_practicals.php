@@ -6,6 +6,7 @@ include('language/language.php');
 if (isset($_POST['practical_search'])) {//not cmplte
     $paper_qry = "SELECT * FROM tab_practical WHERE tab_practical.name like '%" . addslashes($_POST['search_value']) . "%' or
     tab_practical.practicalCategory like '%" . addslashes($_POST['search_value']) . "%' or
+    tab_practical.link like '%" . addslashes($_POST['search_value']) . "%' or
     tab_practical.subject like '%" . addslashes($_POST['search_value']) . "%' ORDER BY tab_practical.paid DESC";
     $practical_result = mysqli_query($mysqli, $paper_qry);}
 
