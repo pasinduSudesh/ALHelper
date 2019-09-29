@@ -71,4 +71,28 @@ function update($table, $form_data, $where_clause='')
 }
 
 
+function getRemainingQuestions(){
+
+    global $mysqli;
+
+    $qNums = array();
+
+    $query_questions = "SELECT COUNT(*) as num FROM tab_question";
+    $question_count = mysqli_fetch_array(mysqli_query($mysqli, $query_questions));
+    $question_count = $question_count['num'];
+
+    $i=1;
+    while ($i<51){
+        array_push($qNums,$i);
+        $i+1;
+    }
+
+    
+    
+
+
+    
+}
+
+
 ?>
