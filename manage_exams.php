@@ -9,7 +9,12 @@ if (isset($_POST['user_search'])) {//not cmplte
     tab_user.school like '%" . addslashes($_POST['search_value']) . "%' or 
     tab_user.district like '%" . addslashes($_POST['search_value']) . "%' or
     tab_user.email like '%" . addslashes($_POST['search_value']) . "%' ORDER BY tab_user.uid DESC";
-    $paper_result = mysqli_query($mysqli, $paper_qry);
+    $paper_result = mysqli_query($mysqli, $paper_qry);}
+
+elseif(isset($_GET['postExam'])){
+
+
+
 } else {
     $tableName = "tab_paper";
     $targetpage = "manage_exams.php";
@@ -111,15 +116,15 @@ if (isset($_GET['status_deactive_id'])) {
            
                             <td>
                                 <!-- <div class="row"> -->
-                                    <a href="add_paper.php?paper_id=<?php echo $users_row['pid']; ?>" class="btn btn-primary">Edit</a>
-                                    <a href="manage_paperusers.php?paper_id=<?php echo $users_row['pid']; ?>"
+                                    <a href="add_exam.php?paper_id=<?php echo $users_row['pid']; ?>" class="btn btn-primary">Edit</a>
+                                    <a href="manage_exams.php?paper_id=<?php echo $users_row['pid']; ?>"
                                     onclick="return confirm('Are you sure you want to delete this user?');"
                                     class="btn btn-default">Delete</a>
-                                    <?php if($users_row['date'] == "0"){?><a href="publish_exam.php?paper_id=<?php echo $users_row['pid']; ?>" 
+                                    <?php if($users_row['postState'] == "0"){?><a href="manage_exam.php?paper_id=<?php echo $users_row['pid']; ?>&postExam=yes" 
                                     class="btn btn-primary">Publish</a><?php } ?>
                                 <!-- </div> -->
                                 <!-- <div class="row"> -->
-                                    <a href="#" class="btn btn-primary">Edit</a>
+                                    <a href="#" class="btn btn-primary">Add Question</a>
 
                                 <!-- </div> -->
                             </td>
