@@ -127,7 +127,7 @@ if (isset($_GET['status_deactive_id'])) {
                                     class="btn btn-primary">Publish</a><?php } ?>
                                 <!-- </div> -->
                                 <!-- <div class="row"> -->
-                                    <a href="#" class="btn btn-primary">Add Question</a>
+                                    <a href="add_question.php?paper_id=<?php echo $users_row['pid'];?>&thisPaper=yes" class="btn btn-primary">Add Question</a>
 
                                 <!-- </div> -->
                             </td>
