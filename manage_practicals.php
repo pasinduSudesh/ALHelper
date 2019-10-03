@@ -31,19 +31,12 @@ if (isset($_POST['practical_search'])) {//not cmplte
     $practical_result = mysqli_query($mysqli, $users_qry);
 }
 if (isset($_GET['delete'])) {
-    delete('tab_paper', 'pid=' . $_GET['paper_id'] . '');
+    delete('tab_practical', 'paid=' . $_GET['practical_id'] . '');
     $_SESSION['msg'] = "12";
-    header("Location:manage_exams.php");
+    header("Location:manage_practicals.php");
     exit;
 }//Active and Deactive status
-if (isset($_GET['postExam'])){
-    $data = array('postState' => '1');
-    update('tab_paper',$data,"WHERE pid = '".$_GET['paper_id']."'");
-    $_SESSION['msg'] = "17";
-    header("Location:manage_exams.php");
-    exit;;
 
-}
 
 if (isset($_GET['status_deactive_id'])) {
     $data = array('status' => '0');

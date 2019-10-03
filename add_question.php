@@ -157,10 +157,63 @@ require("language/language.php");
 <?php
 if (isset($_GET['thisPaper'])) {
   $question_nums = getRemainingQuestions($_GET['paper_id']);
+
+  $sql = "SELECT * FROM tab_paper WHERE pid='{$_GET['paper_id']}'";
+  $paper_details = mysqli_query($mysqli,$sql); 
+  // print_r($paper_details);
+  $paper_details = mysqli_fetch_array($paper_details);
+  // echo $paper_details;
 }
 
+
+
 if (isset($_POST['submit'])){
-  print_r($_REQUEST['ans']);
+  if ((isset($_POST['sub1'])) or (isset($_POST['sub2'])) or (isset($_POST['sub3'])) or (isset($_POST['sub4'])) or (isset($_POST['sub5'])) ){
+    $substatement = "1";
+    $subdata = array(
+      'pid' => ($_GET['paper_id']),
+      'qid' => $_POST['qNo'],
+      'op1' => $_POST['sub1'],
+      'op2' => $_POST['sub2'],
+      'op3' => $_POST['sub3'],
+      'op4' => $_POST['sub4'],
+      'op5' => $_POST['sub5'],
+    );
+    insert('tab_substatement',$subdata);
+  }
+  else{
+    $substatement = "0";
+  }
+
+  $h = ($_REQUEST['ans']);
+  $h1=implode(',',$h);
+  // echo $h1;
+
+  $substatement;
+  $imageLOcation;
+
+  $data = array(
+
+    'pid' => ($_GET['paper_id']),
+    'qid' => $_POST['qNo'],
+    'question' => $_POST['question'],
+    'substatment' => $substatement,
+    'questionImage' => $_POST['question'],//nnnn
+    'ans1' => $_POST['ans1'],
+    'and2' => $_POST['ans2'],
+    'ans3' => $_POST['ans3'],
+    'ans4' => $_POST['ans4'],
+    'ans5' => $_POST['ans5'],
+    'correctAanswer' => $h1    
+  );
+
+  insert('tbl_question',$data);
+  $_SESSION['msg'] = "10";  
+  
+  $aa = $_GET['paper_id'];
+  
+  header( "Location:add_question.php?paper_id=$aa&thisPaper=yes");
+	exit;
 }
 
 
@@ -170,8 +223,11 @@ if (isset($_POST['submit'])){
   <div class="col-md-12">
     <div class="card">
       <div class="page_title_block">
-        <div class="col-md-5 col-xs-12">
-          <div class="page_title">Add Question</div>
+        <div class="col-md-12 col-xs-12">
+          <div class="page_title"><strong>Add Question</strong> <?php echo str_repeat("&nbsp;",10).$paper_details['subject'].str_repeat("&nbsp;",5)."  >  ".str_repeat("&nbsp;",5).
+          $paper_details['paperCategory'].str_repeat("&nbsp;",5)."  >  ".str_repeat("&nbsp;",5).$paper_details['paperTitle']; ?>  </div>
+         
+
         </div>
       </div>
       <div class="clearfix"></div>
@@ -219,35 +275,35 @@ if (isset($_POST['submit'])){
           <div class="form-group">
             <label class="col-md-3 control-label">Sub 1</label>
             <div class="col-md-6">
-              <textarea name="sub1" id="sub1" rows="2" cols="40" required></textarea>
+              <textarea name="sub1" id="sub1" rows="2" cols="40" ></textarea>
             </div>
           </div></br>
 
           <div class="form-group">
             <label class="col-md-3 control-label">Sub 2</label>
             <div class="col-md-6">
-              <textarea name="sub2" id="sub2" rows="2" cols="40" required></textarea>
+              <textarea name="sub2" id="sub2" rows="2" cols="40" ></textarea>
             </div>
           </div></br>
 
           <div class="form-group">
             <label class="col-md-3 control-label">Sub 3</label>
             <div class="col-md-6">
-              <textarea name="sub3" id="sub3" rows="2" cols="40" required></textarea>
+              <textarea name="sub3" id="sub3" rows="2" cols="40" ></textarea>
             </div>
           </div></br>
 
           <div class="form-group">
             <label class="col-md-3 control-label">Sub 4</label>
             <div class="col-md-6">
-              <textarea name="sub4" id="sub4" rows="2" cols="40" required></textarea>
+              <textarea name="sub4" id="sub4" rows="2" cols="40" ></textarea>
             </div>
           </div></br>
 
           <div class="form-group">
             <label class="col-md-3 control-label">Sub 5</label>
             <div class="col-md-6">
-              <textarea name="sub5" id="sub5" rows="2" cols="40" required></textarea>
+              <textarea name="sub5" id="sub5" rows="2" cols="40" ></textarea>
             </div>
           </div></br>
 
@@ -295,11 +351,11 @@ if (isset($_POST['submit'])){
           <div class="form-group">
                           <label class="col-md-3 control-label">Answer:-</label>
                           <div class="col-md-6">
-      						<input type="radio" name="ans[]" value="option1">A                  
-      						<input type="radio" name="ans[]" value="option2">B                  
-      						<input type="radio" name="ans[]" value="option3">C                  
-      						<input type="radio" name="ans[]" value="option4">D                  
-                  <input type="radio" name="ans[]" value="option5">E                  
+      						<input type="radio" name="ans[]" value="1">A                  
+      						<input type="radio" name="ans[]" value="2">B                  
+      						<input type="radio" name="ans[]" value="3">C                  
+      						<input type="radio" name="ans[]" value="4">D                  
+                  <input type="radio" name="ans[]" value="5">E                  
 
       					   </div>
                   </div>
@@ -415,7 +471,9 @@ if (isset($_POST['submit'])){
           </br>
           <div class="form-group">
             <div class="col-md-9 col-md-offset-3">
+              
               <button type="submit" name="submit" class="btn btn-primary">submit</button>
+              
             </div>
           </div>
       </div>
