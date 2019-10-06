@@ -140,8 +140,14 @@ if ((isset($_GET['add'])) and (isset($_POST['submit']))) {
                     <div class="col-md-6">
                       <select name="subject" id="mmid" class="select2" required>
                         <option value="">--Select Subject--</option>
+
+                        <?php foreach($subjects as $value){?>
+
+                        <option value="<?php echo $value; ?>"<?php if(isset($_GET['addThis'])){if ($row['subject']==$value ){?>selected<?php }}?>>
+                        <?php echo $value; ?>
+                        </option> <?php } ?>
           						        						 
-          							<option value="Maths" <?php if(isset($_GET['addThis'])){if ($row['subject']=="Maths"){?>selected<?php }}?>>
+          							<!-- <option value="Maths" <?php if(isset($_GET['addThis'])){if ($row['subject']=="Maths"){?>selected<?php }}?>>
                                       Maths
                                     </option>
 
@@ -155,7 +161,7 @@ if ((isset($_GET['add'])) and (isset($_POST['submit']))) {
 
                                     <option value="Art" <?php if(isset($_GET['addThis'])){if($row['subject']=="Art"){?>selected<?php }}?>>
                                     Art
-                                    </option> 
+                                    </option>  -->
                       </select>
                     </div>
                   </div>
@@ -166,7 +172,7 @@ if ((isset($_GET['add'])) and (isset($_POST['submit']))) {
                       <select name="catagory" id="mmid" class="select2" required>
                         <option value="">--Select Catagory--</option>
           						        						 
-          							<option value="Revision" <?php if(isset($_GET['addThis'])){if($row['paperCategory']=="Revision"){?>selected<?php }}?>>
+          							<!-- <option value="Revision" <?php if(isset($_GET['addThis'])){if($row['paperCategory']=="Revision"){?>selected<?php }}?>>
                                       Revision
                                     </option>
 
@@ -196,7 +202,14 @@ if ((isset($_GET['add'])) and (isset($_POST['submit']))) {
 
                                     <option value="Special Paper" <?php if(isset($_GET['addThis'])){if($row['paperCategory']=="Special Paper"){?>selected<?php }}?>>
                                     Special Paper
-                                    </option> 
+                                    </option>  -->
+
+                                    <?php foreach($paperCat as $value){?>
+                                      <option value="<?php echo $value?>" <?php if(isset($_GET['addThis'])){if($row['paperCategory']== $value){?>selected<?php }}?>>
+                                      <?php echo $value?>
+                                    </option>
+                                    <?php } ?>
+
                       </select>
                     </div>
                   </div>

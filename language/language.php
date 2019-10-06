@@ -35,6 +35,32 @@
 	  $client_lang['16'] = "Notification send successfully";
 
 	  $client_lang['17'] = "Paper published successfully...";
+
+	  $subjects = array(
+		  'Biology',
+		  'Chemistry',
+		  'Physics',
+		  'Econ',
+		  'Accounting',
+		  'Business Studies',
+		  'Sinhala',
+		  'Political Sciense',
+		  'Geography',
+		  'Science for Technology',
+		  'ICT'
+	  );
+
+	  $paperCat = array(
+		  'Rivision',
+		  'Grade 12, 1st term',
+		  'Grade 12, 2nd term',
+		  'Grade 12, 3rd term',
+		  'Grade 13, 1st term',
+		  'Grade 13, 2nd term',
+		  'Grade 13, 3rd term',
+		  'Special Paper'
+	  );
+
 	   
 	   
 	   

@@ -30,6 +30,11 @@
 		DEFINE ('DB_HOST', 'localhost');
 		DEFINE ('DB_NAME', 'edata');
 
+		// DEFINE ('DB_USER', 'euser');
+		// DEFINE ('DB_PASSWORD', '123@asd');		 
+		// DEFINE ('DB_HOST', 'localhost');
+		// DEFINE ('DB_NAME', 'edata');
+
 	
 	$mysqli =mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
 
